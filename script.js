@@ -1,7 +1,7 @@
-const videoElement = document.getElementById("video");
-const button = document.getElementById("button");
+const videoElement = document.getElementById('video');
+const button = document.getElementById('button');
 
-//Prompt to select media stream, pass to video element, then play
+// Prompt to select media stream, pass to video element, then play
 async function selectMediaStream() {
   try {
     const mediaStream = await navigator.mediaDevices.getDisplayMedia();
@@ -10,18 +10,18 @@ async function selectMediaStream() {
       videoElement.play();
     };
   } catch (error) {
-    // Catch error
-    console.log(error);
+   console.log(error);
   }
 }
 
-button.addEventListener("click", async () => {
-  //Disable button on click
+button.addEventListener('click', async () => {
+  // Disable Button
   button.disabled = true;
+  // Start Picture in Picture
+  await videoElement.requestPictureInPicture();
+  // Reset Button
+  button.disabled = false;
 });
-// Start pic in pic
-await videoElement.reqestPictureInPicture();
-//Reset Button
-button.disabled = false;
-//On load
+
+// On Load
 selectMediaStream();
